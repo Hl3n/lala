@@ -7,12 +7,20 @@
 </head>
 <body>
     <script>
-        var luaCode = `
-            print("Hello from GitHub Pages!")
-            -- More Lua code can go here
-        `;
-        // This just serves as a simple way to store the Lua code
-        document.body.innerHTML = "Lua code is ready!";
+        // Check if accessed with the 'authorized' query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const authorized = urlParams.get('authorized') === 'true';
+
+        if (!authorized) {
+            document.body.innerHTML = "User not authorized";
+        } else {
+            var luaCode = `
+                print("Hello from GitHub Pages!")
+                -- More Lua code can go here
+            `;
+            // This part will never be shown on the page because it's part of the Lua code
+            document.body.innerHTML = "Lua code is ready!";
+        }
     </script>
 </body>
 </html>
